@@ -1,0 +1,24 @@
+{
+    "configurations": [
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:SinatraHarness}",
+            "name": "Debug sinatra-harness",
+            "target": "sinatra-harness",
+            "configuration": "debug",
+            "preLaunchTask": "swift: Build Debug sinatra-harness"
+        },
+        {
+            "type": "swift",
+            "request": "launch",
+            "args": [],
+            "cwd": "${workspaceFolder:SinatraHarness}",
+            "name": "Release sinatra-harness",
+            "target": "sinatra-harness",
+            "configuration": "release",
+            "preLaunchTask": "swift: Build Release sinatra-harness"
+        }
+    ]
+}

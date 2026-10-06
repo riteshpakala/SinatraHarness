@@ -1,16 +1,16 @@
 // swift-tools-version: 6.0
-// SinatraMLX — an on-device LLM harness for Apple silicon whose retrieved context
+// SinatraHarness — an on-device LLM harness for Apple silicon whose retrieved context
 // is scored by a small time-series side model and injected into the transformer's
 // logits right before decoding.
 import PackageDescription
 
 let package = Package(
-    name: "SinatraMLX",
+    name: "SinatraHarness",
     // Frigate's floors: macOS 15 (VisionAXCore), iOS/tvOS 17, visionOS 1.
     platforms: [.macOS("15.0"), .iOS(.v17), .tvOS(.v17), .visionOS(.v1)],
     products: [
-        .library(name: "SinatraMLX", targets: ["SinatraMLX"]),
-        .executable(name: "sinatra-mlx", targets: ["sinatra-mlx"]),
+        .library(name: "SinatraHarness", targets: ["SinatraHarness"]),
+        .executable(name: "sinatra-harness", targets: ["sinatra-harness"]),
     ],
     dependencies: [
         // Frigate is the ONLY MLX in the graph: its targets are literally named
@@ -26,7 +26,7 @@ let package = Package(
     ],
     targets: [
         .target(
-            name: "SinatraMLX",
+            name: "SinatraHarness",
             dependencies: [
                 .product(name: "MLX", package: "Frigate"),
                 .product(name: "MLXNN", package: "Frigate"),
@@ -42,16 +42,16 @@ let package = Package(
             swiftSettings: [.swiftLanguageMode(.v5)]
         ),
         .executableTarget(
-            name: "sinatra-mlx",
+            name: "sinatra-harness",
             dependencies: [
-                "SinatraMLX",
+                "SinatraHarness",
                 .product(name: "ArgumentParser", package: "swift-argument-parser"),
             ],
             swiftSettings: [.swiftLanguageMode(.v5)]
         ),
         .testTarget(
-            name: "SinatraMLXTests",
-            dependencies: ["SinatraMLX"],
+            name: "SinatraHarnessTests",
+            dependencies: ["SinatraHarness"],
             resources: [.copy("Fixtures")],
             swiftSettings: [.swiftLanguageMode(.v5)]
         ),
